@@ -69,13 +69,13 @@ TODO 1: Import Required Modules (in calculator.js)
 Goal: Import the modules and npm package you'll need.
 
 Hints:
-- Import the operation functions from "./utils/operations.js"
-- Import the parser functions from "./utils/parser.js"
+- Import the operation functions from ./Utils/operations.js"
+- Import the parser functions from ./Utils/parser.js"
 - Import lodash (the third-party package you installed)
 
 Example:
-  import { add, subtract } from "./utils/operations.js";
-  import { parseNumbers, isValidOperation } from "./utils/parser.js";
+  import { add, subtract } from ./Utils/operations.js";
+  import { parseNumbers, isValidOperation } from ./Utils/parser.js";
   import _ from "lodash";
 
 ===================================================================
@@ -213,3 +213,33 @@ After completing all TODOs, test your calculator:
 
 */
 
+import { add, subtract, multiply, divide } from "./Utils/operations.js";
+import { parseNumbers, isValidOperation } from "./Utils/parser.js";
+
+const operation = process.argv[2];
+const numbers = process.argv.slice(3);
+
+if (!isValidOperation(operation)) {
+  console.log("Invalid operation. Use: add, subtract, multiply, or divide");
+  process.exit(1);
+}
+
+const nums = parseNumbers(numbers);
+let result;
+
+switch (operation) {
+  case "add":
+    result = add(nums);
+    break;
+  case "subtract":
+    result = subtract(nums);
+    break;
+  case "multiply":
+    result = multiply(nums);
+    break;
+  case "divide":
+    result = divide(nums);
+    break;
+}
+
+console.log(`Result: ${result}`);
